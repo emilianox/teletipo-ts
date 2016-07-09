@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": false,
+        "outDir":"_js"
+    },
+    "formatCodeOptions": {
+       "indentSize": 2,
+       "tabSize": 2
+     },
+     "atom": {
+        "formatOnSave": true
+      }
+}
