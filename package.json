@@ -1,0 +1,32 @@
+{
+  "name": "teletipo-ts",
+  "version": "0.0.1",
+  "description": "A telegram bot for GAS",
+  "scripts": {
+    "pull": "node pull.js",
+    "push": "node push.js",
+    "upload": "node pull.js && node push.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilianox/teletipo-ts"
+  },
+  "keywords": [
+    "bot",
+    "telegram",
+    "google",
+    "app",
+    "script",
+    "gas",
+    "typescript"
+  ],
+  "author": "Emiliano Fernandez <emilianohfernandez@gmail.com>",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/batch-stream": "0.1.30",
+    "@types/es6-promise": "0.0.32",
+    "@types/google-apps-script": "0.0.4-alpha",
+    "@types/node": "6.0.45",
+    "@types/node-int64": "0.4.28"
+  }
+}
