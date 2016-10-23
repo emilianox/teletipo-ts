@@ -9,3 +9,8 @@ function testOnlySudoCommand() {
 function testReviewCommand() {
   return testDoPostCommand_("/review");
 }
+
+function testKeyboard() {
+  let key = getKeyboard();
+  Logger.log(key);
+}

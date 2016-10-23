@@ -1,8 +1,13 @@
+/**
+ * Utils for spreadsheets
+ * 
+ * @class SpreadsheetUtils
+ */
 class SpreadsheetUtils {
   namespreadsheet: string;
   namesheet: string;
-  spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet
-  sheet: GoogleAppsScript.Spreadsheet.Sheet
+  spreadsheet: GoogleAppsScript.Spreadsheet.Spreadsheet;
+  sheet: GoogleAppsScript.Spreadsheet.Sheet;
   constructor(namespreadsheet: string, namesheet: string) {
     this.namespreadsheet = namespreadsheet;
     this.namesheet = namesheet;
@@ -22,7 +27,7 @@ class SpreadsheetUtils {
     }
     let spreadsheet = SpreadsheetApp.create(this.namespreadsheet);
     spreadsheet.insertSheet(this.namesheet, 1);
-    return spreadsheet
+    return spreadsheet;
   }
 
   getFirstEmptyRowByColumnArray(range: GoogleAppsScript.Spreadsheet.Range): number {

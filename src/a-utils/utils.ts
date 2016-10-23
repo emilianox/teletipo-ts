@@ -1,18 +1,15 @@
-/**
- * [mergeObj description]
- * @param  {object}     newObj [description]
- * @param  {{}}     oldObj [description]
- * @return {[type]}        [description]
- */
-
 function mergeObj(newObj, oldObj): {} {
-  let _results = [], key: string, value, subkey: string, subvalue
+  let _results = [],
+      key: string,
+      value,
+      subkey: string,
+      subvalue;
   for (key in newObj) {
     value = newObj[key];
-    if (typeof value === 'object') {
+    if (typeof value === "object") {
       if (oldObj[key] !== null) {
         _results.push((function() {
-          var _results1;
+          let _results1;
           _results1 = [];
           for (subkey in value) {
             subvalue = value[subkey];
@@ -30,28 +27,28 @@ function mergeObj(newObj, oldObj): {} {
   return _results;
 }
 
-function datediff(fromDate: Date, toDate: Date) {
-  // source: https://github.com/dmfilipenko/datediff/blob/master/datediff.js
-  if (!fromDate) throw new Error('Date should be specified');
-  var startDate = new Date(1970, 0, 1, 0).getTime(),
-    now = new Date(),
-    toDate = toDate && toDate instanceof Date ? toDate : now,
-    diff = toDate.valueOf() - fromDate.valueOf(),
-    date = new Date(startDate + diff),
-    years = date.getFullYear() - 1970,
-    months = date.getMonth(),
-    days = date.getDate() - 1,
-    hours = date.getHours(),
-    minutes = date.getMinutes(),
-    seconds = date.getSeconds(),
-    diffDate = {
-      years: 0,
-      months: 0,
-      days: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0
-    };
+function datediff(fromDate: Date, toDateOut: Date) {
+  // extract to https://github.com/dmfilipenko/datediff/blob/master/datediff.js
+  if (!fromDate) throw new Error("Date should be specified");
+  let startDate = new Date(1970, 0, 1, 0).getTime(),
+      now = new Date(),
+      toDate = toDateOut && toDateOut instanceof Date ? toDateOut : now,
+      diff = toDate.valueOf() - fromDate.valueOf(),
+      date = new Date(startDate + diff),
+      years = date.getFullYear() - 1970,
+      months = date.getMonth(),
+      days = date.getDate() - 1,
+      hours = date.getHours(),
+      minutes = date.getMinutes(),
+      seconds = date.getSeconds(),
+      diffDate = {
+        years: 0,
+        months: 0,
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      };
 
   if (years < 0) return diffDate;
   diffDate.years = years > 0 ? years : 0;
@@ -63,10 +60,10 @@ function datediff(fromDate: Date, toDate: Date) {
   return diffDate;
 }
 
-function setGlobalVariable(varname, value): any {
+function setGlobalVariable(varname, value): GoogleAppsScript.Properties.Properties {
   return PropertiesService.getScriptProperties().setProperty(varname, JSON.stringify(value));
 }
 
-function getGlobalVariable(varname: string): any {
+function getGlobalVariable(varname: string): string {
   return JSON.parse(PropertiesService.getScriptProperties().getProperty(varname));
 }

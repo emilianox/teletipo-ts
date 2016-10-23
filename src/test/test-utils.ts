@@ -1,6 +1,6 @@
 
 function testDoPostCommand_(command: string, user?): void {
-  var e, tosend;
+  let e, tosend;
   if (!user) {
     user = CONSTANTS.testUser;
   }
@@ -33,9 +33,9 @@ function testDoPostCommand_(command: string, user?): void {
   return doPost(e);
 };
 
-function testSendCommand_(command): void {
-  var allData, otheroptions;
-  setGlobalVariable('session', {});
+function testSendCommand_(command) {
+  let allData, otheroptions;
+  setGlobalVariable("session", {});
   allData = {
     message: {
       chat: {

@@ -3,6 +3,7 @@
         "target": "es5",
         "module": "commonjs",
         "sourceMap": false,
+        "rootDir": "src",
         "outDir":"_js"
     },
     "formatCodeOptions": {

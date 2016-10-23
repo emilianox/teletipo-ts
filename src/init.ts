@@ -1,25 +1,24 @@
-interface TelegramMessage {
-  message: {
-    text: string,
-    chat: {
-      id: number,
-      username: string,
-    }
-  }
-}
+/// <reference path="../definitions/node-telegram-bot-api.d.ts"/>
 
 interface AppScriptConfigsSeccion {
   user: {
     nextFn: Function,
+  };
+}
+
+interface Utils {
+  spreadsheet: {};
+}
+
+
+let utils: Utils = { spreadsheet: {} };
+
+
+interface PostData {
+  postData: {
+  contents: string;
   }
 }
-
-interface utils {
-  spreadsheet: {}
-}
-
-
-let utils = { spreadsheet: {} };
 
 /**
  * doPost is the method for recieving info for external sources
@@ -27,7 +26,7 @@ let utils = { spreadsheet: {} };
  * @param  {object} e google apps events
  * @return {null}
 */
-function doPost(e): void {
+function doPost(e: PostData): void {
   let rawData: string;
   if (typeof e !== "undefined") {
     rawData = e.postData.contents;
@@ -42,20 +41,18 @@ function doPost(e): void {
       }
     });
   }
-  setGlobalVariable('toLog', rawData);
+  setGlobalVariable("toLog", rawData);
   return processPost(rawData);
 }
 
 /**
- * identify is next function and exectute action
- * @param  {[type]} rawData    [description]
- * @return {[type]}            [description]
+ * Identify is next function and execute action
 */
 function processPost(rawData: string): void {
-  let parsedData: TelegramMessage = JSON.parse(rawData);
-  let user = parsedData.message.chat.username;
-  //if (getGlobalVariable("session").[user]?.nextFn?) {
-  let session: AppScriptConfigsSeccion = getGlobalVariable("session");
+  let parsedData: Update = JSON.parse(rawData);
+  let user = parsedData.message.from.username;
+  // if (getGlobalVariable("session").[user]?.nextFn?) {
+  let session: AppScriptConfigsSeccion = JSON.parse(getGlobalVariable("session"));
 
   if (session && session.user && session.user.nextFn) {
     return session.user.nextFn(parsedData);
@@ -73,12 +70,12 @@ function processPost(rawData: string): void {
   }
 }
 
-function getKeyboard(): {} {
-  if (getGlobalVariable('keyboard') !== null) {
-    setGlobalVariable('keyboard', CONSTANTS.keyboard);
+function getKeyboard(): string[][] {
+  if (getGlobalVariable("keyboard") !== null || getGlobalVariable("keyboard") !== "null") {
+    setGlobalVariable("keyboard", CONSTANTS.keyboard);
     return CONSTANTS.keyboard;
   } else {
-    return getGlobalVariable('keyboard');
+    return JSON.parse(getGlobalVariable("keyboard"));
   }
 }
 
@@ -87,7 +84,7 @@ function getKeyboard(): {} {
  * send data to telegram
  * @param  {number} chat_id           chat telegram id to send
  * @param  {string} text              text to send
- * @param  {[type]} otheroptions=null [description]
+ * @param  {[type]} otheroptions={} [description]
  * @return {[type]}                   [description]
 */
 function telegramPost(chat_id: number, text: string, otheroptions?: {}): any {
@@ -100,10 +97,10 @@ function telegramPost(chat_id: number, text: string, otheroptions?: {}): any {
     chat_id: chat_id,
     parse_mode: "Markdown",
     reply_markup: {
-      reply_keyboard: keyboard,
+      keyboard: keyboard,
       resize_keyboard: false
-    } as any
-  };
+    } as IReplyKeyboardMarkup
+  } as ISendMessageOptions;
   if (otheroptions !== null) {
     mergeObj(otheroptions, objToSend);
   }
@@ -120,11 +117,11 @@ function telegramPost(chat_id: number, text: string, otheroptions?: {}): any {
 function setTelegram(): void {
   let secretTelegram = CONSTANTS.secret;
   let driveUrl = (ScriptApp.getService() as any).getUrl();
-  let URL = 'https://api.telegram.org/bot' + secretTelegram + '/setWebhook?url=' + driveUrl;
+  let URL = "https://api.telegram.org/bot" + secretTelegram + "/setWebhook?url=" + driveUrl;
   let response = UrlFetchApp.fetch(URL);
   let result = JSON.parse(response.getContentText());
   if (result.ok && result.result) {
-    Logger.log('Telegram URL Updated');
+    Logger.log("Telegram URL Updated");
   }
   response.getContentText();
 }

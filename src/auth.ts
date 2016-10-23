@@ -7,14 +7,14 @@
  * @param  {string}         params.user Username.
  * @return {string} Result of execution.[description]
 */
-var __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+let __indexOf = [].indexOf || function(item) { for (let i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 function auth(command, params): string {
   let commandRoles = command.roles;
-  if (commandRoles === null) {
+  if (!commandRoles) {
     return command.fn(params);
   } else {
-    if (USERS[params.user] === null) {
+    if (!USERS[params.user]) {
       return "Unauthorized command.";
     } else {
       let userRoles = USERS[params.user].roles;

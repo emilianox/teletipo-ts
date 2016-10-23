@@ -1,6 +1,6 @@
 {
   "name": "teletipo-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A telegram bot for GAS",
   "scripts": {
     "pull": "node pull.js",

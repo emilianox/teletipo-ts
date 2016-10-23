@@ -1,14 +1,8 @@
 interface TelegramFrom {
-  message: {
-    from: {
-      first_name: string,
-      last_name: string,
-    },
-    text: string,
-  };
+  message: Message;
 }
 
-var spreadsheetLog = new SpreadsheetUtils(CONSTANTS.logSheet, "all")
+let spreadsheetLog = new SpreadsheetUtils(CONSTANTS.logSheet, "all");
 
 const logs = {
   logEvent: function(objToSend): void {
