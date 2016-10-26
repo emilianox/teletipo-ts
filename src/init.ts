@@ -111,6 +111,7 @@ function telegramPost(chat_id: number, text: string, otheroptions?: {}): any {
     payload: objToSend
   };
   let url = "https://api.telegram.org/bot" + CONSTANTS.secret + "/sendMessage";
+  Logger.log("objToSend");
   UrlFetchApp.fetch(url, options);
   return logs.logEvent(objToSend);
 }
