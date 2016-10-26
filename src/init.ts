@@ -98,7 +98,8 @@ function telegramPost(chat_id: number, text: string, otheroptions?: {}): any {
     parse_mode: "Markdown",
     reply_markup: {
       keyboard: keyboard,
-      resize_keyboard: false
+      resize_keyboard: false,
+      muteHttpExceptions: false
     } as IReplyKeyboardMarkup
   } as ISendMessageOptions;
   if (otheroptions !== null) {
