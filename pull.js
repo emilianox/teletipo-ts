@@ -8,7 +8,7 @@ var configTsFile = path.join(srcFolder, 'configs', '_config.ts')
 
 exec('tsc ' + configTsFile + ' --outDir .', function (error, stdout, stderr) {
   if (error) {
-    console.log('_config.ts compilation failed')
+    console.log('_config.ts compilation failed', error)
   }
   var config = require(path.join(__dirname, '_config.js'))
 
