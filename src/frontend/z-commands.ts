@@ -1,8 +1,8 @@
 interface Command {
   fn: {
     (params?: {})
-  },
-  roles?: Array<string>
+  };
+  roles?: Array<string>;
 }
 
 
@@ -26,5 +26,5 @@ const COMMANDLIST = {
   } as Command,
   "/start": {
     fn: frontend.startCommand
-  } as Command,
+  } as Command
 };

@@ -4,9 +4,9 @@ const frontend = {
     return "testing";
   },
   onlySudo: function(params?) {
-    return "you are sudo user."
+    return "you are sudo user.";
   },
-  //test markdown telegram
+  // test markdown telegram
   justReviewFn: function(params?): string {
     return `
       *bold text*
@@ -16,7 +16,7 @@ const frontend = {
       \`\`\`text
       pre-formatted fixed-width code block
       \`\`\`
-    `
+    `;
   },
   startCommand: function(params?): string {
     return `
