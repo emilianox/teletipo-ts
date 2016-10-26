@@ -23,10 +23,7 @@
   "author": "Emiliano Fernandez <emilianohfernandez@gmail.com>",
   "license": "GPL-3.0",
   "devDependencies": {
-    "@types/batch-stream": "0.1.30",
     "@types/es6-promise": "0.0.32",
-    "@types/google-apps-script": "0.0.4-alpha",
-    "@types/node": "6.0.45",
-    "@types/node-int64": "0.4.28"
+    "@types/google-apps-script": "0.0.4-alpha"
   }
 }
