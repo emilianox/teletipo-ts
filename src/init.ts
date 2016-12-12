@@ -17,7 +17,7 @@ let utils: Utils = { spreadsheet: {} };
 interface PostData {
   postData: {
   contents: string;
-  }
+  };
 }
 
 /**

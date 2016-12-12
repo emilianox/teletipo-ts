@@ -1,10 +1,9 @@
-let holidaysService = new Holidays();
 const frontend = {
   test: function(params?): string {
     return "testing";
   },
   onlySudo: function(params?) {
-    return "you are sudo user.";
+    return "you are a sudo user.";
   },
   // test markdown telegram
   justReviewFn: function(params?): string {
